@@ -1,0 +1,27 @@
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type Recipe = 
+ record {
+   id: nat;
+   ingredients: vec text;
+   instructions: text;
+   mealType: text;
+   name: text;
+ };
+type MealPlan = vec Meal;
+type Meal = 
+ record {
+   breakfast: opt nat;
+   dinner: opt nat;
+   lunch: opt nat;
+ };
+service : {
+  addRecipe: (text, vec text, text, text) -> (nat);
+  createMealPlan: (MealPlan) -> (Result);
+  generateShoppingList: () -> (vec text) query;
+  getMealPlan: () -> (MealPlan) query;
+  getRecipes: () -> (vec Recipe) query;
+}
